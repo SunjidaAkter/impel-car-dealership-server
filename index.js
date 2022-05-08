@@ -63,9 +63,9 @@ async function run() {
             res.send(items);
         })
 
-        app.post("/inventory", async (req, res) => {
+        app.post("/item", async (req, res) => {
             const doc = req.body;
-            const result = await inventoryCollection.insertOne(doc);
+            const result = await itemCollection.insertOne(doc);
             res.send(result);
         });
 
@@ -106,26 +106,26 @@ async function run() {
             res.send(result);
         })
 
-        app.get("/my-items", verifyJWT, async (req, res) => {
+        app.get("/myItem", verifyJWT, async (req, res) => {
             const decodedEmail = req?.decoded?.email;
             const email = req?.query?.email;
 
             if (email === decodedEmail) {
                 const query = { email };
-                const cursor = inventoryCollection.find(query);
-                const myItems = await cursor.toArray();
+                const cursor = itemCollection.find(query);
+                const myItem = await cursor.toArray();
 
-                res.send(myItems);
+                res.send(myItem);
             } else {
                 res.status(403).send({ massage: " Forbidden, does not have access " });
             }
         });
 
 
-        app.delete("/my-items/:id", async (req, res) => {
+        app.delete("/myItem/:id", async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
-            const result = await inventoryCollection.deleteOne(query);
+            const result = await itemCollection.deleteOne(query);
             res.send(result);
         });
 
