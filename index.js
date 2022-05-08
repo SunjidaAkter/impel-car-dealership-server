@@ -105,7 +105,7 @@ async function run() {
             const result = await itemCollection.updateOne(filter, updateDoc, options);
             res.send(result);
         })
-
+        // hosted
         app.get("/myItem", verifyJWT, async (req, res) => {
             const decodedEmail = req?.decoded?.email;
             const email = req?.query?.email;
