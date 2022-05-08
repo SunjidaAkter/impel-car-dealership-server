@@ -47,6 +47,8 @@ async function run() {
     try {
         await client.connect();
         const itemCollection = client.db("eleventhAssignment").collection("item");
+        const supplierCollection = client.db("eleventhAssignment").collection("supplier");
+
 
         app.post('/signIn', async (req, res) => {
             const user = req.body;
@@ -105,7 +107,7 @@ async function run() {
             const result = await itemCollection.updateOne(filter, updateDoc, options);
             res.send(result);
         })
-        // hosted
+
         app.get("/myItem", verifyJWT, async (req, res) => {
             const decodedEmail = req?.decoded?.email;
             const email = req?.query?.email;
@@ -128,6 +130,14 @@ async function run() {
             const result = await itemCollection.deleteOne(query);
             res.send(result);
         });
+
+        app.get("/supplier", async (req, res) => {
+            const query = {};
+            const cursor = supplierCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        });
+
 
 
     }
