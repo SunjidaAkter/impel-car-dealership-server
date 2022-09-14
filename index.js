@@ -35,13 +35,17 @@ function verifyJWT(req, res, next) {
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wb781.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-// client.connect(err => {
-//     const itemCollection = client.db("eleventhAssignment").collection("item");
+//      client.connect(err => {
+//      const itemCollection = client.db("eleventhAssignment").collection("item");
+//      DB_USER=dbassignment7
+//      DB_PASS=7gUG47BwbfJP1UuD
+//      ACCESS_TOKEN_SECRET=0f3c8859691897030dca96bec67e2d96e75e9cd574ed7c67565e31ceedf427603a9cbccfcd5068f5ac0a3e847f2777a9f89ae624a4b1de0c6b4159100c30dce0
 //     // perform actions on the collection object
 //     console.log('connected')
 //     client.close();
 // });
 //require('crypto').randomBytes(64).toString('hex')
+
 
 
 async function run() {
